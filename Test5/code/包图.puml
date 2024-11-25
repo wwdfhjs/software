@@ -1,0 +1,68 @@
+@startuml
+package "用户管理" {
+    class 用户 {
+        +用户ID: int
+        +姓名: String
+        +邮箱: String
+        +密码: String
+    }
+    class 用户服务 {
+        +注册()
+        +登录()
+        +查询车辆()
+    }
+}
+
+package "车辆管理" {
+    class 车辆 {
+        +车辆ID: int
+        +品牌: String
+        +型号: String
+        +价格: float
+        +年份: int
+        +里程: int
+    }
+    class 车辆服务 {
+        +添加车辆()
+        +更新车辆信息()
+    }
+}
+
+package "订单管理" {
+    class 订单 {
+        +订单ID: int
+        +用户ID: int
+        +车辆ID: int
+        +订单状态: String
+        +创建时间: Date
+    }
+    class 订单服务 {
+        +创建订单()
+        +更新订单状态()
+    }
+}
+
+package "数据库管理" {
+    class 数据库 {
+        +连接()
+        +查询()
+        +更新()
+    }
+}
+
+package "系统管理" {
+    class 管理员 {
+        +管理员ID: int
+        +姓名: String
+        +邮箱: String
+        +密码: String
+    }
+}
+
+用户服务 --> 数据库 : <<使用>>
+车辆服务 --> 数据库 : <<使用>>
+订单服务 --> 数据库 : <<使用>>
+订单服务 --> 用户管理 : <<依赖>>
+订单服务 --> 车辆管理 : <<依赖>>
+
+@enduml

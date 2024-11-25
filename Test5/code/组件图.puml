@@ -1,0 +1,24 @@
+@startuml
+package "二手车管理系统" {
+    [用户界面] as UI
+    [用户管理组件] as UserManagement
+    [车辆管理组件] as CarManagement
+    [订单管理组件] as OrderManagement
+    [数据库组件] as Database
+    [支付系统] as PaymentSystem
+
+    UI --> UserManagement : 调用
+    UserManagement --> Database : 查询/更新用户信息
+
+    UI --> CarManagement : 调用
+    CarManagement --> Database : 查询/更新车辆信息
+
+    UI --> OrderManagement : 调用
+    OrderManagement --> Database : 查询/更新订单信息
+    OrderManagement --> CarManagement : 查询车辆状态
+    OrderManagement --> UserManagement : 获取用户信息
+
+    OrderManagement --> PaymentSystem : 处理支付
+}
+
+@enduml

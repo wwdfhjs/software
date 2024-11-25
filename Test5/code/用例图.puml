@@ -1,0 +1,33 @@
+@startuml
+left to right direction
+actor 用户
+actor 管理员
+rectangle "二手车管理系统" {
+  usecase "用户注册" as UC1
+  usecase "用户登录" as UC2
+  usecase "查询车辆" as UC3
+  usecase "搜索车辆" as UC4
+  usecase "查看车辆详情" as UC5
+  usecase "下单购买车辆" as UC6
+  usecase "订单确认" as UC7
+  usecase "管理车辆信息" as UC8
+  usecase "审核订单" as UC9
+  usecase "订单管理" as UC10
+}
+
+用户 --> UC1
+用户 --> UC2
+用户 --> UC3
+用户 --> UC4
+用户 --> UC5
+用户 --> UC6
+用户 --> UC10
+
+管理员 --> UC8
+管理员 --> UC9
+管理员 --> UC10
+
+UC6 ..> UC7 : <<include>>
+UC2 ..> UC1 : <<include>>
+
+@enduml
